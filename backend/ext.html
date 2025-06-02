@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button id="startCapture">Start Screen Capture</button>
+    <video id="screenVideo" autoplay playsinline></video>
+
+    <script>
+      const video = document.getElementById("screenVideo");
+      const button = document.getElementById("startCapture");
+
+      button.onclick = async () => {
+        try {
+          const stream = await navigator.mediaDevices.getDisplayMedia({
+            video: true,
+            audio: true // Optional, may not be supported on all devices
+          });
+          video.srcObject = stream;
+        } catch (err) {
+          console.error("Error: " + err);
+        }
+      };
+    </script>
+  </body>
+</html>
